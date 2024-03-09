@@ -14,7 +14,7 @@ const MobileHeader = () => {
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <div className="flex flex-col sm:flex-row">
         <div className="-ml-[340px] sm:ml-0 w-[340px] h-0 sm:h-screen overflow-y-auto bg-blue20">
           <Sidebar />
