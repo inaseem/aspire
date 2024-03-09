@@ -1,0 +1,17 @@
+.item {
+    @apply flex flex-col gap-[2px] items-center text-[9px] max-h-14;
+    filter: invert(25%) sepia(11%) saturate(0%) hue-rotate(89deg) brightness(105%) contrast(99%);
+
+    &:hover {
+        filter: invert(65%) sepia(21%) saturate(5504%) hue-rotate(103deg) brightness(95%) contrast(99%);
+    }
+
+    img {
+        @apply w-6 h-6
+    }
+}
+
+.active {
+    filter: invert(65%) sepia(21%) saturate(5504%) hue-rotate(103deg) brightness(95%) contrast(99%);
+    font-weight: 700;
+}

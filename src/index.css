@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply text-white;
+  font-family: 'Open Sans', Regular;
+}
+
+button,
+div,
+ul,
+li,
+a {
+  @apply transition-all;
+}
+
+button:hover {
+  @apply opacity-70;
+}

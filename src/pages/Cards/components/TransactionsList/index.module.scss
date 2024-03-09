@@ -1,0 +1,11 @@
+.transactions-list :global {
+  @apply relative z-[2] bg-white px-6 pt-3 text-grey206 border border-black94 rounded-lg -mt-3;
+
+  li {
+    @apply list-none py-[18px] sm:py-6 border-b last:border-none hover:bg-black94;
+  }
+}
+
+.btn-view-all {
+  @apply relative w-full z-[1] rounded-lg -mt-3 px-4 pb-4 pt-7 text-green41 bg-green42 font-semibold text-xsm text-center transition hover:opacity-70;
+}
