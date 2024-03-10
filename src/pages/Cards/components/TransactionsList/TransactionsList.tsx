@@ -15,7 +15,7 @@ const TransactionsList = () => {
     <div>
       <ul className={styles['transactions-list']}>
         {transactions.map((transaction, index) => (
-          <li className="ok" key={index}>
+          <li key={index}>
             <div className="flex gap-3 items-center w-full">
               <div
                 className={clsx(
