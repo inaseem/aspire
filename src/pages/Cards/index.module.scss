@@ -24,10 +24,10 @@
 }
 
 .tabs-content-container :global {
-  @apply flex-1 sm:px-10 sm:py-8 rounded-lg mt-6 sm:mt-4 shadow-none sm:shadow-cardLight8 flex flex-col items-stretch sm:items-start sm:flex-row sm:gap-11 sm:border border-white99;
+  @apply flex-1 sm:px-10 sm:py-8 rounded-lg mt-6 sm:mt-4 shadow-none sm:shadow-cardLight8 flex flex-col items-stretch lg:items-start lg:flex-row sm:gap-11 sm:border border-white99;
 
   .card-carousel-wrapper {
-    @apply max-w-full sm:max-w-[414px] flex flex-col gap-3;
+    @apply max-w-full lg:max-w-[414px] flex flex-col gap-3;
 
     .btn-toggle-card {
       @apply text-green41 text-xs flex gap-2 items-start sm:items-center hover:opacity-70 font-bold self-end bg-white sm:bg-transparent px-[10px] py-[5px] sm:px-0 sm:py-0 rounded-t-md -mb-6 sm:mb-0 h-10 sm:h-auto;

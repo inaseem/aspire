@@ -28,7 +28,7 @@ const CardDisplayView = () => {
           <CarouselItem
             key={item.cardNumber}
             isSnapPoint={isSnapPoint}
-            className="h-auto max-w-full w-full sm:max-w-[414px]"
+            className="h-auto max-w-full w-full lg:max-w-[414px]"
           >
             <DebitCard {...item} isDetailsVisible={isCardDetailsVisible} />
           </CarouselItem>
