@@ -15,9 +15,10 @@ Aspire
 `yarn build`
 
 ## Tech Stack
-1. React
+1. React (Framework, can implement the same in Vue as well)
 2. TypeScript
-3. Vite
-4. React Router
-5. Tailwind CSS
+3. Vite (as Build tool)
+4. React Router (For routing)
+5. Tailwind CSS (For styling)
 6. Sass
+7. React-Query (For REST api and state management)
