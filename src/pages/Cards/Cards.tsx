@@ -7,6 +7,7 @@ import { CardDetails } from '../../api/types';
 import AddCardModal from '../../components/AddCardModal';
 import AddIcon from '../../components/AddIcon';
 import Collapsible from '../../components/Collapsible';
+import NoCardsView from '../../components/NoCardsView';
 import Tabs from '../../components/Tabs/Tabs';
 import { GET_CARDS } from '../../queries';
 import { getRandomCardDetauils } from '../../utils';
@@ -40,6 +41,18 @@ const Cards = () => {
     setIsAddCardModalOpen(false);
   };
 
+  const handleCardFreezeUnfreeze = (cardIndex: number) => {
+    setCards((prev) =>
+      prev.map((card, index) =>
+        index === cardIndex ? { ...card, isFrozen: !card.isFrozen } : card
+      )
+    );
+  };
+
+  const handleCancelCard = (cardIndex: number) => {
+    setCards((prev) => prev.filter((_, index) => index !== cardIndex));
+  };
+
   return (
     <div className={styles['cards-page-wrapper']}>
       <div className="sm:text-grey13 text-sm font-semibold sm:font-normal">
@@ -61,18 +74,28 @@ const Cards = () => {
         onChange={(index) => setActiveIndex(index)}
       />
       <div className={styles['tabs-content-container']}>
-        <CardDisplayView key={cards.length} cards={cards} />
-        <div className="details-container">
-          <Collapsible icon={cardDetailsIcon} title="Card details" />
-          <Collapsible
-            icon={cardDetailsIcon}
-            title="Recent transactions"
-            isDefaultOpen
-          >
-            <TransactionsList />
-          </Collapsible>
-          C
-        </div>
+        {cards.length > 0 ? (
+          <>
+            <CardDisplayView
+              key={cards.length}
+              cards={cards}
+              onCardFreezeUnfreeze={handleCardFreezeUnfreeze}
+              onCancelCard={handleCancelCard}
+            />
+            <div className="details-container">
+              <Collapsible icon={cardDetailsIcon} title="Card details" />
+              <Collapsible
+                icon={cardDetailsIcon}
+                title="Recent transactions"
+                isDefaultOpen
+              >
+                <TransactionsList />
+              </Collapsible>
+            </div>
+          </>
+        ) : (
+          <NoCardsView />
+        )}
       </div>
       <AddCardModal
         isOpen={isAddCardModalOpen}

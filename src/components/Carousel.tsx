@@ -36,6 +36,7 @@ interface CarouselProps<T> {
   readonly renderItem: (
     props: CarouselRenderItemProps<T>
   ) => React.ReactElement<CarouselItemProps>;
+  readonly onPageChange: (index: number) => void;
 }
 
 interface CarouselRenderItemProps<T> {
@@ -50,7 +51,7 @@ export interface CarouselRef {
 export const Carousel = React.forwardRef<
   CarouselRef,
   CarouselProps<CardDetails>
->(({ items, renderItem }, ref) => {
+>(({ items, renderItem, onPageChange }, ref) => {
   const {
     scrollRef,
     pages,
@@ -82,6 +83,10 @@ export const Carousel = React.forwardRef<
       window.removeEventListener('keypress', handle);
     };
   }, [next, prev]);
+
+  useEffect(() => {
+    onPageChange(activePageIndex);
+  }, [activePageIndex, items, onPageChange]);
 
   return (
     <div>

@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import { CardDetails } from '../api/types';
 import aspireLogo from '../assets/icons/aspire_logo.svg';
+import styles from './debit-card.module.scss';
 
 type DebitCardProps = CardDetails & {
   isDetailsVisible?: boolean;
@@ -32,10 +33,8 @@ const DebitCard = ({
   return (
     <div
       className={clsx(
-        'bg-green41 rounded-xl p-6 sm:p-7 flex flex-col leading-[0.58px]',
-        {
-          grayscale: isFrozen,
-        }
+        'bg-green41 rounded-xl p-6 sm:p-7 flex flex-col leading-[0.58px] transition-all',
+        { [styles['frozen']]: isFrozen }
       )}
     >
       <img
