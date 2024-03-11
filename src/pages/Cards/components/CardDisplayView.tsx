@@ -1,5 +1,6 @@
 import { useState } from 'react';
-
+import { useQuery } from 'react-query';
+import api from '../../../api';
 import cancelCardIcon from '../../../assets/icons/deactivate_card.svg';
 import eyeIcon from '../../../assets/icons/eye.svg';
 import freezeCardIcon from '../../../assets/icons/freeze_card.svg';
@@ -8,10 +9,21 @@ import replaceCardIcon from '../../../assets/icons/replace_card.svg';
 import setSpendLimitIcon from '../../../assets/icons/set_spend_limit.svg';
 import { Carousel, CarouselItem } from '../../../components/Carousel';
 import DebitCard from '../../../components/DebitCard';
-import { cards } from '../../../constants';
+import { GET_CARDS } from '../../../queries';
 
 const CardDisplayView = () => {
   const [isCardDetailsVisible, setIsCardDetailsVisible] = useState(false);
+  const { data, isLoading } = useQuery({
+    queryKey: GET_CARDS,
+    queryFn: () => api.getCards(),
+  });
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  const cards = data || [];
+
   return (
     <div className="card-carousel-wrapper">
       <button

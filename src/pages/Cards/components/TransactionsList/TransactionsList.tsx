@@ -1,16 +1,26 @@
 import clsx from 'clsx';
+import { useQuery } from 'react-query';
+import api from '../../../../api';
 import cardIcon from '../../../../assets/icons/card.svg';
 import nextIcon from '../../../../assets/icons/next.svg';
-import {
-  purposeBgMap,
-  purposeIconMap,
-  transactions,
-} from '../../../../constants';
+import { purposeBgMap, purposeIconMap } from '../../../../constants';
+import { GET_TRANSACTIONS } from '../../../../queries';
 import styles from './index.module.scss';
 
 type Purpose = keyof typeof purposeIconMap;
 
 const TransactionsList = () => {
+  const { data, isLoading } = useQuery({
+    queryKey: GET_TRANSACTIONS,
+    queryFn: () => api.getTransactions(),
+  });
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  const transactions = data || [];
+
   return (
     <div>
       <ul className={styles['transactions-list']}>
