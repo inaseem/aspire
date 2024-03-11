@@ -14,6 +14,12 @@ Aspire
 ## Production build
 `yarn build`
 
+## Features
+1. Web and mobile views.
+2. Add Card
+3. Cancel Card
+4. Freeze/Unfreeze card
+
 ## Tech Stack
 1. React (Framework, can implement the same in Vue as well)
 2. TypeScript
