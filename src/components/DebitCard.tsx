@@ -1,11 +1,8 @@
+import clsx from 'clsx';
+import { CardDetails } from '../api/types';
 import aspireLogo from '../assets/icons/aspire_logo.svg';
 
-type DebitCardProps = {
-  name: string;
-  cardNumber: string;
-  validThru: string;
-  cvv: string;
-  issuer: string;
+type DebitCardProps = CardDetails & {
   isDetailsVisible?: boolean;
 };
 
@@ -28,11 +25,19 @@ const DebitCard = ({
   cvv,
   issuer,
   isDetailsVisible = false,
+  isFrozen = false,
 }: DebitCardProps) => {
   const digitsGroup = cardNumber.split(' ');
 
   return (
-    <div className="bg-green41 rounded-xl p-6 sm:p-7 flex flex-col leading-[0.58px]">
+    <div
+      className={clsx(
+        'bg-green41 rounded-xl p-6 sm:p-7 flex flex-col leading-[0.58px]',
+        {
+          grayscale: isFrozen,
+        }
+      )}
+    >
       <img
         src={aspireLogo}
         className="self-end h-[21px] sm:h-[23.7px]"

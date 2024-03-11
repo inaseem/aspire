@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unnecessary-type-constraint */
-import React, { CSSProperties, useEffect } from 'react';
-import { useSnapCarousel } from 'react-snap-carousel';
 import clsx from 'clsx';
+import React, { CSSProperties, useEffect, useImperativeHandle } from 'react';
+import { useSnapCarousel } from 'react-snap-carousel';
+import { CardDetails } from '../api/types';
 
 const styles = {
   root: {},
@@ -42,10 +43,14 @@ interface CarouselRenderItemProps<T> {
   readonly isSnapPoint: boolean;
 }
 
-export const Carousel = <T extends any>({
-  items,
-  renderItem,
-}: CarouselProps<T>) => {
+export interface CarouselRef {
+  readonly refresh: () => void;
+}
+
+export const Carousel = React.forwardRef<
+  CarouselRef,
+  CarouselProps<CardDetails>
+>(({ items, renderItem }, ref) => {
   const {
     scrollRef,
     pages,
@@ -54,7 +59,10 @@ export const Carousel = <T extends any>({
     next,
     goTo,
     snapPointIndexes,
+    refresh,
   } = useSnapCarousel();
+
+  useImperativeHandle(ref, () => ({ refresh, goTo }));
 
   useEffect(() => {
     const handle = (e: KeyboardEvent) => {
@@ -99,7 +107,7 @@ export const Carousel = <T extends any>({
       </div>
     </div>
   );
-};
+});
 
 interface CarouselItemProps {
   readonly isSnapPoint: boolean;

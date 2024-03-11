@@ -1,15 +1,44 @@
 import { useState } from 'react';
 import cardDetailsIcon from '../../assets/icons/card_details.svg';
 
+import { useQuery } from 'react-query';
+import api from '../../api';
+import { CardDetails } from '../../api/types';
+import AddCardModal from '../../components/AddCardModal';
 import AddIcon from '../../components/AddIcon';
 import Collapsible from '../../components/Collapsible';
 import Tabs from '../../components/Tabs/Tabs';
+import { GET_CARDS } from '../../queries';
+import { getRandomCardDetauils } from '../../utils';
 import CardDisplayView from './components/CardDisplayView';
 import TransactionsList from './components/TransactionsList/TransactionsList';
 import styles from './index.module.scss';
 
 const Cards = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isAddCardModalOpen, setIsAddCardModalOpen] = useState(false);
+  const [cards, setCards] = useState<CardDetails[]>([]);
+
+  const { isLoading } = useQuery({
+    queryKey: GET_CARDS,
+    queryFn: () => api.getCards(),
+    onSuccess: (data) => {
+      setCards(data);
+    },
+  });
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  const handleAddCardClick = () => {
+    setIsAddCardModalOpen(true);
+  };
+
+  const handleAddCard = (cardName: string) => {
+    setCards((prev) => [...prev, getRandomCardDetauils(cardName)]);
+    setIsAddCardModalOpen(false);
+  };
 
   return (
     <div className={styles['cards-page-wrapper']}>
@@ -21,7 +50,7 @@ const Cards = () => {
           <span className="prefix">S$</span>
           <span className="amount">3,000</span>
         </div>
-        <button className={styles['btn-new-card']}>
+        <button className={styles['btn-new-card']} onClick={handleAddCardClick}>
           <AddIcon />
           <span>New Card</span>
         </button>
@@ -32,7 +61,7 @@ const Cards = () => {
         onChange={(index) => setActiveIndex(index)}
       />
       <div className={styles['tabs-content-container']}>
-        <CardDisplayView />
+        <CardDisplayView key={cards.length} cards={cards} />
         <div className="details-container">
           <Collapsible icon={cardDetailsIcon} title="Card details" />
           <Collapsible
@@ -45,6 +74,11 @@ const Cards = () => {
           C
         </div>
       </div>
+      <AddCardModal
+        isOpen={isAddCardModalOpen}
+        onClose={() => setIsAddCardModalOpen(false)}
+        onAddCard={handleAddCard}
+      />
     </div>
   );
 };

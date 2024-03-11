@@ -12,4 +12,5 @@ export type CardDetails = {
   validThru: string;
   cvv: string;
   issuer: string;
+  isFrozen?: boolean;
 };

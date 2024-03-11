@@ -1,28 +1,32 @@
-import { useState } from 'react';
-import { useQuery } from 'react-query';
-import api from '../../../api';
+import { useLayoutEffect, useRef, useState } from 'react';
+import { CardDetails } from '../../../api/types';
 import cancelCardIcon from '../../../assets/icons/deactivate_card.svg';
 import eyeIcon from '../../../assets/icons/eye.svg';
 import freezeCardIcon from '../../../assets/icons/freeze_card.svg';
 import addToGPayIcon from '../../../assets/icons/gpay.svg';
 import replaceCardIcon from '../../../assets/icons/replace_card.svg';
 import setSpendLimitIcon from '../../../assets/icons/set_spend_limit.svg';
-import { Carousel, CarouselItem } from '../../../components/Carousel';
+import {
+  Carousel,
+  CarouselItem,
+  CarouselRef,
+} from '../../../components/Carousel';
 import DebitCard from '../../../components/DebitCard';
-import { GET_CARDS } from '../../../queries';
 
-const CardDisplayView = () => {
+type CardDisplayViewProps = {
+  cards: CardDetails[];
+};
+
+const CardDisplayView = ({ cards }: CardDisplayViewProps) => {
   const [isCardDetailsVisible, setIsCardDetailsVisible] = useState(false);
-  const { data, isLoading } = useQuery({
-    queryKey: GET_CARDS,
-    queryFn: () => api.getCards(),
-  });
+  const carouselRef = useRef<CarouselRef>(null);
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  const cards = data || [];
+  useLayoutEffect(() => {
+    if (!carouselRef.current) {
+      return;
+    }
+    carouselRef.current.refresh();
+  }, [cards]);
 
   return (
     <div className="card-carousel-wrapper">
@@ -35,6 +39,7 @@ const CardDisplayView = () => {
       </button>
 
       <Carousel
+        ref={carouselRef}
         items={cards}
         renderItem={({ item, isSnapPoint }) => (
           <CarouselItem
