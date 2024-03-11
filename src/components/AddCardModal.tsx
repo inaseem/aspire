@@ -56,15 +56,9 @@ const AddCardModal = ({ isOpen, onClose, onAddCard }: AddCardModalProps) => {
                   </div>
 
                   <form className="mt-4" onSubmit={onSubmit}>
-                    <label
-                      htmlFor="card-name"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      Card name
-                    </label>
                     <input
+                      required
                       type="text"
-                      name="card-name"
                       id="cardName"
                       className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-grey13 px-3 py-2"
                     />
