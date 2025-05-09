@@ -4,22 +4,14 @@ https://inaseem.github.io/aspire/
 
 Aspire
 
-## Setup
-1. Clone the repository 
-2. run `yarn` in the root dirctory
-
-## Running
-`yarn dev`
-
-## Production build
-`yarn build`
-
 ## Features
 1. Web and mobile views.
 2. Add Card
 3. Cancel Card
 4. Freeze/Unfreeze card
 5. Form validations
+6. Automated build and deployment via GitHub actions
+7. Automated testing on CI
 
 ## Tech Stack
 1. React (Framework, can implement the same in Vue as well)
@@ -30,3 +22,16 @@ Aspire
 6. Sass
 7. React-Query (For REST api and state management)
 8. Vitest + react testing library (for unit testing)
+
+## Setup
+1. Clone the repository 
+2. run `yarn` in the root dirctory
+
+## Running
+`yarn dev`
+
+## Production build
+`yarn build`
+
+## Running tests
+`yarn test`
