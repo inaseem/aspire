@@ -1,0 +1,52 @@
+.cards-page-wrapper {
+  @apply flex flex-col h-full sm:h-auto w-full mx-auto;
+  max-width: 1280px;
+}
+
+.balance-container :global {
+  @apply flex gap-3 items-center;
+
+  .prefix {
+    @apply h-6 w-10 rounded bg-green41 text-center text-xs leading-6 sm:leading-6 sm:text-xsm;
+  }
+
+  .amount {
+    @apply text-2xl sm:text-[26px] font-bold sm:text-grey13;
+  }
+}
+
+.btn-new-card :global {
+  @apply flex gap-2 px-3 py-[9px] sm:bg-blue44 rounded items-center text-xsm font-bold text-blue56 sm:text-white;
+
+  img {
+    @apply h-4 w-4 sm:filter-none;
+  }
+}
+
+.tabs-content-container :global {
+  @apply flex-1 sm:px-10 sm:py-8 rounded-lg mt-6 sm:mt-4 shadow-none sm:shadow-cardLight8 flex flex-col items-stretch lg:items-start lg:flex-row sm:gap-11 sm:border border-white99;
+
+  .card-carousel-wrapper {
+    @apply max-w-full lg:max-w-[414px] flex flex-col gap-3;
+
+    .btn-toggle-card {
+      @apply text-green41 text-xs flex gap-2 items-start sm:items-center hover:opacity-70 font-bold self-end bg-white sm:bg-transparent px-[10px] py-[5px] sm:px-0 sm:py-0 rounded-t-md -mb-6 sm:mb-0 h-10 sm:h-auto;
+    }
+
+    .card-actions-container {
+      @apply -mx-6 sm:-mx-0 rounded-t-3xl sm:rounded-xl mt-6 sm:mt-5 bg-blue96 px-7 py-5 flex justify-between text-blue20 text-xsm leading-[14px];
+
+      button {
+        @apply flex flex-col gap-2 items-center;
+
+        img {
+          @apply w-8 h-8;
+        }
+      }
+    }
+  }
+
+  .details-container {
+    @apply flex-1 flex flex-col gap-6 -mx-6 sm:-mx-0 bg-white py-6 px-6 sm:py-0 sm:px-0;
+  }
+}

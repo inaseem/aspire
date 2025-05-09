@@ -1,0 +1,17 @@
+@font-face {
+  font-family: 'Avenir Next';
+  src: url('AvenirNext-DemiBold.otf');
+  src: local('AvenirNext-DemiBold'), local('AvenirNext-DemiBold'),
+    url('AvenirNext-DemiBold.otf') format('otf');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avenir Next';
+  src: url('AvenirNext-Regular.otf');
+  src: local('AvenirNext-Regular'), local('AvenirNext-Regular'),
+    url('venirNext-Regular.otf') format('otf');
+  font-weight: normal;
+  font-style: normal;
+}

@@ -1,0 +1,18 @@
+.tab {
+    @apply opacity-30 cursor-pointer text-sm;
+    font-family: Avenir Next;
+
+    &:hover {
+        @apply opacity-70
+    }
+}
+
+.active {
+    @apply opacity-100 font-bold;
+
+    &::after {
+        @apply block w-full h-[2px] bg-blue56 rounded mt-[4.5px] transition;
+        content: '';
+        transition: width 0.3s, height 0.3s;
+    }
+}
